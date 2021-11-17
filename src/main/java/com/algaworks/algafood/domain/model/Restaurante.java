@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -30,7 +33,8 @@ public class Restaurante {
 	private BigDecimal taxaFrete;
 	
 	@ManyToOne
-	@JoinColumn(name = "cozinha_id")
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JoinColumn(name = "cozinha_id", nullable = false)
 	private Cozinha cozinha;
 	
 }
